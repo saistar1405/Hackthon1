@@ -1,0 +1,340 @@
+/* Import Modern Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+/* CSS Variables for Premium Dark Theme */
+:root {
+  --bg-dark: #0f111a;
+  --bg-card: rgba(30, 33, 44, 0.7);
+  --primary: #00e676;
+  --primary-hover: #00c853;
+  --secondary: #2979ff;
+  --danger: #ff1744;
+  --text-light: #ffffff;
+  --text-muted: #9aa0a6;
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --shadow-neon: 0 0 15px rgba(0, 230, 118, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top left, #1a1c29, var(--bg-dark));
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism Cards */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.highlight {
+  color: var(--primary);
+  text-shadow: var(--shadow-neon);
+}
+
+.subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Login Page Specific */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+}
+
+.login-container .card {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text-light);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: var(--primary);
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: #000;
+  box-shadow: var(--shadow-neon);
+}
+
+.primary-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: 0 0 25px rgba(0, 230, 118, 0.5);
+}
+
+.secondary-btn {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.secondary-btn:hover {
+  background: rgba(0, 230, 118, 0.1);
+}
+
+.danger-btn {
+  background: var(--danger);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 23, 68, 0.3);
+}
+
+.danger-btn:hover {
+  background: #d50000;
+  box-shadow: 0 0 25px rgba(255, 23, 68, 0.5);
+}
+
+.toggle-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+#toggle-auth {
+  color: var(--primary);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Main App Navigation */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid var(--glass-border);
+  background: rgba(15, 17, 26, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+nav .logo {
+  font-size: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-info button {
+  width: auto;
+  padding: 0.5rem 1.5rem;
+}
+
+/* Main App Layout */
+.app-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 3rem;
+  flex: 1;
+}
+
+.camera-panel {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Video Canvas */
+.video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--glass-border);
+}
+
+.output_canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Warnings and Errors */
+.warning, .error {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  animation: pulseWarning 2s infinite;
+}
+
+.warning {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ff9800;
+  border: 1px solid #ff9800;
+}
+
+.error {
+  background: rgba(255, 23, 68, 0.2);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+
+@keyframes pulseWarning {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+/* Live Stats */
+.stat-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.stat-box:last-child {
+  border-bottom: none;
+}
+
+.stat-box .label {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.stat-box .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#rep-count {
+  font-size: 3rem;
+}
+
+/* Leaderboard */
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--glass-border);
+  transition: background 0.3s ease;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem 0.5rem;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+.rank {
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 1rem;
+}
+
+.lb-email {
+  flex: 1;
+  color: var(--text-light);
+}
+
+.lb-score {
+  font-weight: 700;
+  color: var(--primary);
+  margin-right: 1rem;
+}
+
+.lb-badge {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(41, 121, 255, 0.2);
+  color: var(--secondary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .app-container {
+    flex-direction: column;
+  }
+}

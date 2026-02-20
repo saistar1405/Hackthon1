@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Sports Talent ID - Push-Up Test</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- MediaPipe dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+
+    <!-- Firebase App & Services -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">FIT<span class="highlight">ID</span></div>
+        <div class="user-info">
+            <span id="user-email"></span>
+            <button id="logout-btn" class="secondary-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="app-container">
+
+        <!-- Left panel (Video & AI) -->
+        <div class="camera-panel card">
+            <h2>Push-Up Fitness Test</h2>
+            <div id="warning-message" class="warning hidden"></div>
+
+            <div class="video-container">
+                <!-- Hidden video element -->
+                <video class="input_video" autoplay playsinline
+                    style="position: absolute; opacity: 0; pointer-events: none; width: 10px; height: 10px;"></video>
+                <!-- Canvas to draw pose -->
+                <canvas class="output_canvas" width="640" height="480"></canvas>
+            </div>
+
+            <div class="controls">
+                <button id="start-btn" class="primary-btn">Start Test</button>
+                <button id="stop-btn" class="danger-btn hidden">Stop & Submit</button>
+            </div>
+        </div>
+
+        <!-- Right panel (Stats & Leaderboard) -->
+        <div class="stats-panel">
+
+            <!-- Live Stats -->
+            <div class="card stats-card">
+                <h3>Live Stats</h3>
+                <div class="stat-box">
+                    <span class="label">Reps</span>
+                    <span class="value highlight" id="rep-count">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">Phase</span>
+                    <span class="value" id="current-phase">UP</span>
+                </div>
+                <div class="stat-box">
+                    <span class="label">Badge</span>
+                    <span class="value" id="current-badge">-</span>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="card leaderboard-card">
+                <h3>Leaderboard</h3>
+                <ul id="leaderboard-list">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
